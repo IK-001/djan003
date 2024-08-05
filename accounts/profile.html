@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Adjust as needed -->
+</head>
+<body>
+    <div class="container">
+        <h1>{{ user.username }}'s Profile</h1>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Joined:</strong> {{ user.date_joined }}</p>
+
+        <h2>Edit Profile</h2>
+        <form method="post" action="{% url 'accounts:edit_profile' %}">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user.username }}">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}">
+            
+            <button type="submit">Save Changes</button>
+        </form>
+        
+        <a href="{% url 'accounts:password_change' %}">Change Password</a>
+        <br>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</body>
+</html>
