@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="text-center">
+    <h1 class="text-4xl font-bold mb-4">Cart Detail</h1>
+  </div>
+
+  <div class="container mx-auto px-4 py-8">
+    <table class="table-auto w-full">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Product</th>
+          <th class="px-4 py-2">Quantity</th>
+          <th class="px-4 py-2">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+        <tr>
+          <td class="px-4 py-2">{{ item.product.name }}</td>
+          <td class="px-4 py-2">{{ item.quantity }}</td>
+          <td class="px-4 py-2">{{ item.product.price }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="text-right mt-4">
+      <p>Total: ${{ total_price }}</p>
+      <a href="{% url 'checkout' %}" class="bg-blue-500 text-white p-2 rounded">Checkout</a>
+    </div>
+  </div>
+{% endblock %}
